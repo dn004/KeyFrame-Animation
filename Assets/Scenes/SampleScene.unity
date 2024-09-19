@@ -864,10 +864,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionsAnimator: {fileID: 815852702}
-  FirstPageNext: {fileID: 210699874}
-  SecondPagePrevious: {fileID: 225824424}
-  SecondPageNext: {fileID: 1488241198}
-  LastPagePrevious: {fileID: 1845079364}
+  firstPageNext: {fileID: 210699874}
+  secondPagePrevious: {fileID: 225824424}
+  secondPageNext: {fileID: 1488241198}
+  lastPagePrevious: {fileID: 1845079364}
 --- !u!1 &1112005942
 GameObject:
   m_ObjectHideFlags: 0

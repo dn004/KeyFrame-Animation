@@ -1,53 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class Transitions : MonoBehaviour
 {
-    public Animator transitionsAnimator;
-    public Button FirstPageNext;
-    public Button SecondPagePrevious;
-    public Button SecondPageNext;  
-    public Button LastPagePrevious;
+    [SerializeField] private Animator transitionsAnimator;
+    [SerializeField] private Button firstPageNext;
+    [SerializeField] private Button secondPagePrevious;
+    [SerializeField] private Button secondPageNext;
+    [SerializeField] private Button lastPagePrevious;
 
-    void Start()
+    private const string FirstToSecond = "FirstToSecond";
+    private const string SecondToFirst = "SecondToFirst";
+    private const string SecondToLast = "SecondToLast";
+    private const string LastToSecond = "LastToSecond";
+
+    private void Start()
     {
-        FirstPageNext.onClick.AddListener(() => First2Second());
-        SecondPagePrevious.onClick.AddListener(() => Second2First());
-        SecondPageNext.onClick.AddListener(() => Second2Last());
-        LastPagePrevious.onClick.AddListener(() => Last2Second());
+        firstPageNext.onClick.AddListener(() => SetTransition(FirstToSecond));
+        secondPagePrevious.onClick.AddListener(() => SetTransition(SecondToFirst));
+        secondPageNext.onClick.AddListener(() => SetTransition(SecondToLast));
+        lastPagePrevious.onClick.AddListener(() => SetTransition(LastToSecond));
     }
 
-    public void First2Second()
+    private void SetTransition(string currentTransition)
     {
-        transitionsAnimator.SetBool("FirstToSecond", true);
-        transitionsAnimator.SetBool("SecondToFirst", false);
-        transitionsAnimator.SetBool("SecondToLast", false);
-        transitionsAnimator.SetBool("LastToSecond", false);
-    }
+        transitionsAnimator.SetBool(FirstToSecond, false);
+        transitionsAnimator.SetBool(SecondToFirst, false);
+        transitionsAnimator.SetBool(SecondToLast, false);
+        transitionsAnimator.SetBool(LastToSecond, false);
 
-    public void Second2First()
-    {
-        transitionsAnimator.SetBool("SecondToFirst", true);
-        transitionsAnimator.SetBool("FirstToSecond", false);
-        transitionsAnimator.SetBool("SecondToLast", false);
-        transitionsAnimator.SetBool("LastToSecond", false);
-    }
-
-    public void Second2Last()
-    {
-        transitionsAnimator.SetBool("SecondToLast", true);
-        transitionsAnimator.SetBool("FirstToSecond", false);
-        transitionsAnimator.SetBool("SecondToFirst", false);
-        transitionsAnimator.SetBool("LastToSecond", false);
-    }
-
-    public void Last2Second()
-    {
-        transitionsAnimator.SetBool("LastToSecond", true);
-        transitionsAnimator.SetBool("FirstToSecond", false);
-        transitionsAnimator.SetBool("SecondToFirst", false);
-        transitionsAnimator.SetBool("SecondToLast", false);
+        transitionsAnimator.SetBool(currentTransition, true);
     }
 }
